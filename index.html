@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#F5EFE4">
-    <title>Pastillas Dentales Portátiles</title>
+    <meta name="description" content="Ficha de producto: pastillas dentales portátiles. Una pastilla, cualquier lugar.">
+    <title>Pastillas Dentales Portátiles · Ficha de producto</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,7 @@
             --tinta:        #2E1F17;
             --tinta-suave:  #6B5847;
             --canela:       #A65A2E;
+            --canela-claro: #C77B4A;
             --miel:         #D4A574;
             --salvia:       #7D9080;
             --linea:        #E8DFD0;
@@ -24,6 +26,10 @@
 
             --serif:        "Fraunces", Georgia, serif;
             --sans:         "Inter", "Helvetica Neue", Arial, sans-serif;
+
+            --radio:        6px;
+            --sombra-suave: 0 2px 12px rgba(46, 31, 23, 0.06);
+            --sombra-media: 0 6px 24px rgba(46, 31, 23, 0.10);
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -31,6 +37,7 @@
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
+            scroll-padding-top: 40px;
         }
 
         body {
@@ -46,8 +53,10 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             overflow-x: hidden;
+            font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
         }
 
+        /* Grano global */
         body::before {
             content: "";
             position: fixed;
@@ -59,16 +68,35 @@
             mix-blend-mode: multiply;
         }
 
+        /* Skip link accesible */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--papel);
+            color: var(--tinta);
+            padding: 10px 16px;
+            border-radius: 0 0 var(--radio) 0;
+            font-size: 13px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+        .skip-link:focus {
+            left: 0;
+        }
+
+        /* Barra de progreso */
         .progreso {
             position: fixed;
             top: 0;
             left: 0;
-            height: 2px;
+            height: 3px;
             width: 0%;
-            background: var(--canela);
-            opacity: 0.5;
+            background: linear-gradient(to right, var(--canela) 0%, var(--canela-claro) 100%);
+            opacity: 0.85;
             z-index: 1000;
             transition: width 0.1s linear;
+            box-shadow: 0 0 8px rgba(166, 90, 46, 0.25);
         }
 
         .contenedor {
@@ -78,8 +106,10 @@
             position: relative;
         }
 
+        /* ---------- HERO ---------- */
         .hero {
             min-height: 100vh;
+            min-height: 100svh;
             padding: 22px 0 60px 0;
             display: flex;
             flex-direction: column;
@@ -87,6 +117,15 @@
             text-align: center;
             position: relative;
             animation: heroIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -20px -40px;
+            background: radial-gradient(ellipse at center 40%, rgba(212, 165, 116, 0.12) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         @keyframes heroIn {
@@ -101,10 +140,10 @@
             font-family: var(--sans);
             font-size: 10.5px;
             font-weight: 500;
-            letter-spacing: 2.2px;
+            letter-spacing: 2.4px;
             text-transform: uppercase;
             color: var(--tinta-suave);
-            opacity: 0.75;
+            opacity: 0.8;
         }
 
         .hero-centro {
@@ -118,7 +157,13 @@
             width: 170px;
             height: auto;
             margin-bottom: 42px;
-            filter: drop-shadow(0 8px 20px rgba(46, 31, 23, 0.06));
+            filter: drop-shadow(0 10px 22px rgba(46, 31, 23, 0.08));
+            animation: flotar 5s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-6px); }
         }
 
         .hero h1 {
@@ -130,6 +175,7 @@
             color: var(--tinta);
             margin: 0 0 24px 0;
             font-variation-settings: "opsz" 144;
+            text-wrap: balance;
         }
 
         .hero h1 em {
@@ -160,10 +206,10 @@
             font-family: var(--sans);
             font-size: 10.5px;
             font-weight: 500;
-            letter-spacing: 2.2px;
+            letter-spacing: 2.4px;
             text-transform: uppercase;
             color: var(--tinta-suave);
-            opacity: 0.6;
+            opacity: 0.65;
         }
 
         .scroll-marca {
@@ -180,16 +226,22 @@
             50%      { transform: scaleY(1);   opacity: 0.75; }
         }
 
+        /* ---------- SECCIONES ---------- */
         .seccion {
-            padding: 56px 0 12px 0;
+            padding: 64px 0 16px 0;
             position: relative;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 800px;
         }
 
         .seccion + .seccion {
             border-top: 1px solid var(--linea);
         }
 
-        .seccion-cabecera { margin-bottom: 30px; position: relative; }
+        .seccion-cabecera {
+            margin-bottom: 32px;
+            position: relative;
+        }
 
         .seccion-meta {
             display: flex;
@@ -198,33 +250,67 @@
             font-family: var(--sans);
             font-size: 10.5px;
             font-weight: 500;
-            letter-spacing: 2.2px;
+            letter-spacing: 2.4px;
             text-transform: uppercase;
             color: var(--tinta-suave);
-            opacity: 0.7;
-            margin-bottom: 16px;
+            opacity: 0.75;
+            margin-bottom: 18px;
         }
 
         .seccion-meta .numero {
             font-family: var(--serif);
             font-style: italic;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 15px;
             letter-spacing: 0.5px;
             color: var(--canela);
             opacity: 1;
             text-transform: none;
         }
 
+        /* Título + icono centrados como unidad */
+        .titulo-envoltura {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .titulo-con-icono {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 100%;
+        }
+
+        .titulo-icono {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            color: var(--canela);
+            opacity: 0.9;
+            stroke-width: 1.1;
+            padding: 6px;
+            border-radius: 50%;
+            background: transparent;
+            transition: background 0.5s ease, transform 0.5s ease;
+        }
+
+        .seccion.activa .titulo-icono {
+            background: rgba(166, 90, 46, 0.07);
+            transform: scale(1.04);
+        }
+
         .seccion h2 {
             font-family: var(--serif);
             font-weight: 500;
-            font-size: 30px;
-            letter-spacing: -0.6px;
-            line-height: 1.15;
+            font-size: 36px;
+            letter-spacing: -0.9px;
+            line-height: 1.12;
             color: var(--tinta);
             margin: 0;
             font-variation-settings: "opsz" 144;
+            text-align: center;
+            text-wrap: balance;
         }
 
         .seccion h2 em {
@@ -233,6 +319,7 @@
             color: var(--canela);
         }
 
+        /* ---------- TEXTO ---------- */
         .parrafo {
             margin: 0 0 18px 0;
             font-size: 15.5px;
@@ -240,6 +327,7 @@
             color: var(--tinta);
             font-weight: 300;
             text-align: left;
+            text-wrap: pretty;
         }
 
         .parrafo:last-child { margin-bottom: 0; }
@@ -255,6 +343,7 @@
             font-variation-settings: "opsz" 144;
         }
 
+        /* ---------- LISTAS ---------- */
         .lista-caract {
             list-style: none;
             padding: 0;
@@ -263,7 +352,7 @@
         }
 
         .lista-caract li {
-            padding: 22px 0 22px 0;
+            padding: 22px 0;
             border-bottom: 1px solid var(--linea-suave);
             display: flex;
             align-items: baseline;
@@ -283,11 +372,11 @@
             font-family: var(--serif);
             font-style: italic;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 14px;
             color: var(--canela);
-            opacity: 0.85;
+            opacity: 0.9;
             flex-shrink: 0;
-            min-width: 24px;
+            min-width: 26px;
         }
 
         .lista-ing { list-style: none; padding: 0; margin: 0; }
@@ -331,18 +420,19 @@
             font-weight: 300;
         }
 
+        /* ---------- PRECAUCIONES ---------- */
         .bloque-precaucion {
-            background: rgba(125, 144, 128, 0.045);
+            background: rgba(125, 144, 128, 0.05);
             border-left: 2px solid var(--salvia);
             padding: 28px 22px 28px 24px;
-            border-radius: 0 4px 4px 0;
+            border-radius: 0 var(--radio) var(--radio) 0;
             margin: 0 -6px;
         }
 
         .lista-prec { list-style: none; padding: 0; margin: 0; }
 
         .lista-prec li {
-            padding: 20px 0 20px 0;
+            padding: 20px 0;
             border-bottom: 1px solid rgba(125, 144, 128, 0.15);
         }
 
@@ -369,6 +459,7 @@
             font-weight: 300;
         }
 
+        /* ---------- NOTA ---------- */
         .nota {
             font-family: var(--serif);
             font-style: italic;
@@ -385,8 +476,9 @@
             border-top: 1px solid rgba(125, 144, 128, 0.2);
         }
 
+        /* ---------- PRECIO ---------- */
         .bloque-precio {
-            padding: 70px 0 40px 0;
+            padding: 72px 0 40px 0;
             text-align: center;
             position: relative;
         }
@@ -462,8 +554,9 @@
             margin: 0;
         }
 
+        /* ---------- COLOFÓN ---------- */
         .colofon {
-            padding: 60px 0 20px 0;
+            padding: 64px 0 20px 0;
             text-align: center;
             border-top: 1px solid var(--linea);
             margin-top: 40px;
@@ -508,19 +601,20 @@
             font-family: var(--sans);
             font-size: 10.5px;
             font-weight: 500;
-            letter-spacing: 2.2px;
+            letter-spacing: 2.4px;
             text-transform: uppercase;
             color: var(--tinta-suave);
-            opacity: 0.6;
+            opacity: 0.65;
             margin: 0;
         }
 
+        /* ---------- BOTÓN ARRIBA ---------- */
         .arriba {
             position: fixed;
             bottom: 24px;
             right: 20px;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: var(--papel);
             border: 1px solid var(--linea);
@@ -530,12 +624,23 @@
             align-items: center;
             justify-content: center;
             padding: 0;
-            box-shadow: 0 2px 12px rgba(46, 31, 23, 0.06);
+            box-shadow: var(--sombra-suave);
             opacity: 0;
             pointer-events: none;
-            transform: translateY(8px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease, background 0.3s ease;
             z-index: 900;
+        }
+
+        .arriba:hover {
+            background: #FFFDF8;
+            box-shadow: var(--sombra-media);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .arriba:focus-visible {
+            outline: 2px solid var(--canela);
+            outline-offset: 3px;
         }
 
         .arriba.visible {
@@ -544,8 +649,78 @@
             transform: translateY(0);
         }
 
-        .arriba svg { width: 14px; height: 14px; }
+        .arriba.visible:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
 
+        .arriba svg { width: 15px; height: 15px; }
+
+        /* ---------- NAVEGACIÓN LATERAL (escritorio) ---------- */
+        .nav-lateral {
+            position: fixed;
+            top: 50%;
+            right: 28px;
+            transform: translateY(-50%);
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 900;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .nav-lateral.visible { opacity: 1; }
+
+        .nav-lateral a {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--canela);
+            background: transparent;
+            opacity: 0.4;
+            transition: opacity 0.3s ease, background 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-lateral a:hover {
+            opacity: 0.9;
+            transform: scale(1.2);
+        }
+
+        .nav-lateral a.activo {
+            background: var(--canela);
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        .nav-lateral a::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--tinta);
+            color: var(--fondo);
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-lateral a:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(-4px);
+        }
+
+        /* ---------- ESTADOS DE ANIMACIÓN ---------- */
         .revelar,
         .lista-ing li,
         .lista-caract li,
@@ -554,31 +729,37 @@
             transition: filter 0.2s linear, opacity 0.2s linear, transform 0.2s linear;
         }
 
+        /* ---------- RESPONSIVE ---------- */
         @media (min-width: 700px) {
             .contenedor {
-                max-width: 520px;
+                max-width: 540px;
                 padding: 0 30px 120px 30px;
             }
 
-            .hero {
-                padding-top: 60px;
-            }
+            .hero { padding-top: 60px; }
 
             .hero h1 { font-size: 58px; }
             .hero-lema { font-size: 18px; }
             .pastilla-svg { width: 200px; }
-            .seccion h2 { font-size: 36px; }
-            .precio-numero { font-size: 110px; }
+            .seccion h2 { font-size: 44px; }
+            .titulo-icono { width: 62px; height: 62px; }
+            .seccion-meta { font-size: 11px; letter-spacing: 2.6px; }
+            .seccion-meta .numero { font-size: 16px; }
+            .precio-numero { font-size: 116px; }
             .parrafo, .lista-caract li { font-size: 16.5px; }
             .lista-ing h3 { font-size: 22px; }
         }
 
+        @media (min-width: 1100px) {
+            .nav-lateral { display: flex; }
+        }
+
+        /* ---------- ACCESIBILIDAD ---------- */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
 
-            .hero {
-                animation: none;
-            }
+            .hero,
+            .pastilla-svg { animation: none; }
 
             .revelar,
             .lista-ing li,
@@ -588,26 +769,44 @@
                 transform: none !important;
                 filter: none !important;
                 transition: none !important;
+                will-change: auto;
             }
 
             .scroll-marca { animation: none; }
-            .arriba, .progreso { transition: none; }
+            .arriba, .progreso, .nav-lateral, .nav-lateral a { transition: none; }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--canela);
+            outline-offset: 3px;
+            border-radius: 2px;
         }
     </style>
 </head>
 <body>
 
+    <a href="#contenido" class="skip-link">Saltar al contenido</a>
+
     <div class="progreso" id="progreso" aria-hidden="true"></div>
 
-    <div class="contenedor">
+    <!-- Navegación lateral (solo escritorio) -->
+    <nav class="nav-lateral" id="navLateral" aria-label="Navegación de secciones">
+        <a href="#t-descripcion" data-label="Descripción" data-target="sec-descripcion"></a>
+        <a href="#t-caract"      data-label="Características" data-target="sec-caract"></a>
+        <a href="#t-ing"         data-label="Ingredientes" data-target="sec-ing"></a>
+        <a href="#t-prec"        data-label="Precauciones" data-target="sec-prec"></a>
+        <a href="#t-precio"      data-label="Precio" data-target="sec-precio"></a>
+    </nav>
 
+    <div class="contenedor" id="contenido">
+
+        <!-- HERO -->
         <section class="hero" aria-label="Portada">
             <div class="hero-top">
                 <span>Ficha de producto</span>
             </div>
 
             <div class="hero-centro">
-
                 <svg class="pastilla-svg" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <ellipse cx="100" cy="158" rx="60" ry="6" fill="#2E1F17" opacity="0.08"/>
                     <path d="M35 70 L35 120 A65 20 0 0 0 165 120 L165 70 Z"
@@ -625,7 +824,6 @@
                 </svg>
 
                 <h1>Pastillas dentales<br><em>portátiles</em></h1>
-
                 <p class="hero-lema">Una pastilla. Cualquier lugar.</p>
             </div>
 
@@ -635,13 +833,27 @@
             </div>
         </section>
 
-        <section class="seccion revelar" aria-labelledby="t-descripcion">
+        <!-- 01 · Descripción -->
+        <section class="seccion revelar" id="sec-descripcion" aria-labelledby="t-descripcion">
             <header class="seccion-cabecera">
                 <div class="seccion-meta">
                     <span class="numero">01</span>
                     <span>Descripción</span>
                 </div>
-                <h2 id="t-descripcion">Una solución simple<br>para un momento <em>incómodo</em>.</h2>
+                <div class="titulo-envoltura">
+                    <div class="titulo-con-icono">
+                        <h2 id="t-descripcion">Una solución simple<br>para un momento <em>incómodo</em>.</h2>
+                        <svg class="titulo-icono" viewBox="0 0 32 32" fill="none"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <ellipse cx="16" cy="12" rx="9" ry="4.5"/>
+                            <path d="M7 12v6a9 4.5 0 0 0 18 0v-6"/>
+                            <circle cx="13" cy="11" r="0.9" fill="currentColor" stroke="none"/>
+                            <circle cx="19" cy="13.5" r="0.8" fill="currentColor" stroke="none"/>
+                            <circle cx="16" cy="9.5" r="0.7" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </div>
+                </div>
             </header>
 
             <p class="parrafo parrafo-inicial">
@@ -657,13 +869,28 @@
             </p>
         </section>
 
-        <section class="seccion revelar" aria-labelledby="t-caract">
+        <!-- 02 · Características -->
+        <section class="seccion revelar" id="sec-caract" aria-labelledby="t-caract">
             <header class="seccion-cabecera">
                 <div class="seccion-meta">
                     <span class="numero">02</span>
                     <span>Características</span>
                 </div>
-                <h2 id="t-caract">Lo esencial,<br>en <em>cinco puntos</em>.</h2>
+                <div class="titulo-envoltura">
+                    <div class="titulo-con-icono">
+                        <h2 id="t-caract">Lo esencial,<br>en <em>cinco puntos</em>.</h2>
+                        <svg class="titulo-icono" viewBox="0 0 32 32" fill="none"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M9 10h13"/>
+                            <path d="M9 16h13"/>
+                            <path d="M9 22h13"/>
+                            <path d="M5 10l1.4 1.4L9 8.8" transform="translate(-1.5 -1)"/>
+                            <path d="M5 16l1.4 1.4L9 14.8" transform="translate(-1.5 -1)"/>
+                            <path d="M5 22l1.4 1.4L9 20.8" transform="translate(-1.5 -1)"/>
+                        </svg>
+                    </div>
+                </div>
             </header>
 
             <ul class="lista-caract">
@@ -675,13 +902,26 @@
             </ul>
         </section>
 
-        <section class="seccion revelar" aria-labelledby="t-ing">
+        <!-- 03 · Ingredientes -->
+        <section class="seccion revelar" id="sec-ing" aria-labelledby="t-ing">
             <header class="seccion-cabecera">
                 <div class="seccion-meta">
                     <span class="numero">03</span>
                     <span>Ingredientes y beneficios</span>
                 </div>
-                <h2 id="t-ing">Siete elementos<br>con una <em>función clara</em>.</h2>
+                <div class="titulo-envoltura">
+                    <div class="titulo-con-icono">
+                        <h2 id="t-ing">Siete elementos<br>con una <em>función clara</em>.</h2>
+                        <svg class="titulo-icono" viewBox="0 0 32 32" fill="none"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M24 6c-8 0-14 5-14 12 0 3 1 5 2 6"/>
+                            <path d="M24 6c0 9-5 14-12 14"/>
+                            <path d="M24 6c1 8-3 16-12 17"/>
+                            <path d="M12 24v3"/>
+                        </svg>
+                    </div>
+                </div>
             </header>
 
             <ul class="lista-ing">
@@ -735,13 +975,24 @@
             </p>
         </section>
 
-        <section class="seccion revelar" aria-labelledby="t-prec">
+        <!-- 04 · Precauciones -->
+        <section class="seccion revelar" id="sec-prec" aria-labelledby="t-prec">
             <header class="seccion-cabecera">
                 <div class="seccion-meta">
                     <span class="numero">04</span>
                     <span>Precauciones y modo de uso</span>
                 </div>
-                <h2 id="t-prec">Antes de usarla,<br>ten en cuenta <em>esto</em>.</h2>
+                <div class="titulo-envoltura">
+                    <div class="titulo-con-icono">
+                        <h2 id="t-prec">Antes de usarla,<br>ten en cuenta <em>esto</em>.</h2>
+                        <svg class="titulo-icono" viewBox="0 0 32 32" fill="none"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M16 5l9 3v7c0 6-4 10-9 12-5-2-9-6-9-12V8l9-3z"/>
+                            <path d="M12 16l3 3 5-6"/>
+                        </svg>
+                    </div>
+                </div>
             </header>
 
             <div class="bloque-precaucion">
@@ -801,13 +1052,24 @@
             </div>
         </section>
 
-        <section class="seccion revelar bloque-precio" aria-labelledby="t-precio">
+        <!-- 05 · Precio -->
+        <section class="seccion revelar bloque-precio" id="sec-precio" aria-labelledby="t-precio">
             <header class="seccion-cabecera">
                 <div class="seccion-meta">
                     <span class="numero">05</span>
                     <span>Precio</span>
                 </div>
-                <h2 id="t-precio">Un empaque.<br>Treinta <em>pastillas</em>.</h2>
+                <div class="titulo-envoltura">
+                    <div class="titulo-con-icono">
+                        <h2 id="t-precio">Un empaque.<br>Treinta <em>pastillas</em>.</h2>
+                        <svg class="titulo-icono" viewBox="0 0 32 32" fill="none"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M17 5H7a2 2 0 0 0-2 2v10l12 12 12-12L17 5z"/>
+                            <circle cx="11" cy="11" r="1.6"/>
+                        </svg>
+                    </div>
+                </div>
             </header>
 
             <div class="precio-ornament" aria-hidden="true">
@@ -843,110 +1105,195 @@
     </button>
 
     <script>
-        const elementosRevelar = Array.from(document.querySelectorAll('.revelar'));
-        const itemsLista = Array.from(document.querySelectorAll('.lista-ing li, .lista-caract li, .lista-prec li'));
+        (() => {
+            "use strict";
 
-        const indiceItem = new Map();
-        itemsLista.forEach((item) => {
-            const padre = item.parentElement;
-            const hermanos = Array.from(padre.children);
-            indiceItem.set(item, hermanos.indexOf(item));
-        });
+            /* ---------- ELEMENTOS ---------- */
+            const elementosRevelar = Array.from(document.querySelectorAll('.revelar'));
+            const itemsLista = Array.from(document.querySelectorAll('.lista-ing li, .lista-caract li, .lista-prec li'));
+            const progreso = document.getElementById('progreso');
+            const botonArriba = document.getElementById('arriba');
+            const navLateral = document.getElementById('navLateral');
+            const navLinks = navLateral ? Array.from(navLateral.querySelectorAll('a')) : [];
+            const secciones = Array.from(document.querySelectorAll('.seccion'));
 
-        const BLUR_MAX = 4;              // antes 6, aún más suave
-        const BLUR_MAX_ITEM = 3;         // antes 5
-        const OPACIDAD_MIN = 0.75;       // antes 0.65, entran casi visibles
-        const DESPLAZAMIENTO_MAX = 10;   // antes 14
-        const DESPLAZAMIENTO_ITEM = 8;   // antes 10
-        const OFFSET_ITEM = 10;          // antes 12
-        const RANGO_FOCO = 0.08;         // antes 0.15, enfoca casi al instante
-        const PUNTO_ENFOQUE = 0.75;      // 0.5 = mitad de pantalla · 0.75 = más abajo
+            /* ---------- CONSTANTES ---------- */
+            const BLUR_MAX = 4;
+            const BLUR_MAX_ITEM = 3;
+            const OPACIDAD_MIN = 0.78;
+            const DESPLAZAMIENTO_MAX = 10;
+            const DESPLAZAMIENTO_ITEM = 8;
+            const OFFSET_ITEM = 10;
+            const RANGO_FOCO = 0.08;
+            const PUNTO_ENFOQUE = 0.82;
 
-        let vh = window.innerHeight;
+            let vh = window.innerHeight;
+            let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function calcularFactor(rect, offsetExtra) {
-            const puntoFoco = vh * PUNTO_ENFOQUE;      // antes: vh / 2
-            const distancia = rect.top - puntoFoco + offsetExtra;
+            /* ---------- UTILIDADES ---------- */
+            const suavizar = (t) => t * t * (3 - 2 * t);
 
-            if (distancia <= 0) return 1;
+            function calcularFactor(rect, offsetExtra = 0) {
+                const puntoFoco = vh * PUNTO_ENFOQUE;
+                const distancia = rect.top - puntoFoco + offsetExtra;
 
-            const rango = vh * RANGO_FOCO;
-            const factor = 1 - Math.min(distancia / rango, 1);
+                if (distancia <= 0) return 1;
 
-            return factor * factor * (3 - 2 * factor);
-        }
-
-        function actualizar() {
-            vh = window.innerHeight;
-
-            elementosRevelar.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                if (rect.bottom < 0) {
-                    el.style.filter = 'none';
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                    return;
-                }
-
-                const factor = calcularFactor(rect, 0);
-                const blur = (1 - factor) * BLUR_MAX;
-                const opacidad = OPACIDAD_MIN + factor * (1 - OPACIDAD_MIN);
-                const desplazamiento = (1 - factor) * DESPLAZAMIENTO_MAX;
-
-                el.style.filter = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : 'none';
-                el.style.opacity = opacidad.toFixed(3);
-                el.style.transform = `translateY(${desplazamiento.toFixed(2)}px)`;
-            });
-
-            itemsLista.forEach((item) => {
-                const rect = item.getBoundingClientRect();
-
-                if (rect.bottom < 0) {
-                    item.style.filter = 'none';
-                    item.style.opacity = '1';
-                    item.style.transform = 'none';
-                    return;
-                }
-
-                const idx = indiceItem.get(item) || 0;
-                const offsetExtra = idx * OFFSET_ITEM;
-
-                const factor = calcularFactor(rect, offsetExtra);
-                const blur = (1 - factor) * BLUR_MAX_ITEM;
-                const opacidad = OPACIDAD_MIN + factor * (1 - OPACIDAD_MIN);
-                const desplazamiento = (1 - factor) * DESPLAZAMIENTO_ITEM;
-
-                item.style.filter = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : 'none';
-                item.style.opacity = opacidad.toFixed(3);
-                item.style.transform = `translateY(${desplazamiento.toFixed(2)}px)`;
-            });
-
-            requestAnimationFrame(actualizar);
-        }
-
-        requestAnimationFrame(actualizar);
-
-        const progreso = document.getElementById('progreso');
-        const actualizarProgreso = () => {
-            const altura = document.documentElement.scrollHeight - window.innerHeight;
-            const avance = altura > 0 ? (window.scrollY / altura) * 100 : 0;
-            progreso.style.width = avance + '%';
-        };
-        window.addEventListener('scroll', actualizarProgreso, { passive: true });
-        window.addEventListener('resize', actualizarProgreso);
-
-        const botonArriba = document.getElementById('arriba');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                botonArriba.classList.add('visible');
-            } else {
-                botonArriba.classList.remove('visible');
+                const rango = vh * RANGO_FOCO;
+                const factor = 1 - Math.min(distancia / rango, 1);
+                return suavizar(factor);
             }
-        }, { passive: true });
 
-        botonArriba.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+            function aplicarEstilo(el, factor, blurMax, desplazamientoMax) {
+                const blur = (1 - factor) * blurMax;
+                const opacidad = OPACIDAD_MIN + factor * (1 - OPACIDAD_MIN);
+                const desplazamiento = (1 - factor) * desplazamientoMax;
+
+                el.style.filter = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : '';
+                el.style.opacity = opacidad.toFixed(3);
+                el.style.transform = desplazamiento > 0.05 ? `translateY(${desplazamiento.toFixed(2)}px)` : '';
+            }
+
+            function limpiarEstilo(el) {
+                el.style.filter = '';
+                el.style.opacity = '';
+                el.style.transform = '';
+                el.style.willChange = 'auto';
+            }
+
+            /* ---------- ANIMACIÓN DE REVELADO ---------- */
+            let rafId = null;
+
+            function actualizar() {
+                vh = window.innerHeight;
+
+                elementosRevelar.forEach((el) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.bottom < -50) { limpiarEstilo(el); return; }
+                    const factor = calcularFactor(rect);
+                    aplicarEstilo(el, factor, BLUR_MAX, DESPLAZAMIENTO_MAX);
+                });
+
+                itemsLista.forEach((item) => {
+                    const rect = item.getBoundingClientRect();
+                    if (rect.bottom < -50) { limpiarEstilo(item); return; }
+
+                    const idx = itemsLista.indexOf(item) % 8;
+                    const factor = calcularFactor(rect, idx * OFFSET_ITEM);
+                    aplicarEstilo(item, factor, BLUR_MAX_ITEM, DESPLAZAMIENTO_ITEM);
+                });
+
+                rafId = requestAnimationFrame(actualizar);
+            }
+
+            /* ---------- MARCAR SECCIÓN ACTIVA ---------- */
+            const marcarActiva = () => {
+                const centro = window.innerHeight / 2;
+
+                secciones.forEach((sec) => {
+                    const rect = sec.getBoundingClientRect();
+                    if (rect.top <= centro && rect.bottom >= centro) {
+                        sec.classList.add('activa');
+                    } else {
+                        sec.classList.remove('activa');
+                    }
+                });
+
+                navLinks.forEach((link) => {
+                    const targetId = link.dataset.target;
+                    const target = document.getElementById(targetId);
+                    if (!target) return;
+                    const rect = target.getBoundingClientRect();
+                    if (rect.top <= centro && rect.bottom >= centro) {
+                        link.classList.add('activo');
+                        link.setAttribute('aria-current', 'true');
+                    } else {
+                        link.classList.remove('activo');
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            };
+
+            /* ---------- PROGRESO ---------- */
+            const actualizarProgreso = () => {
+                const altura = document.documentElement.scrollHeight - window.innerHeight;
+                const avance = altura > 0 ? (window.scrollY / altura) * 100 : 0;
+                progreso.style.width = avance + '%';
+            };
+
+            /* ---------- BOTÓN ARRIBA + NAV LATERAL ---------- */
+            const actualizarBotones = () => {
+                const y = window.scrollY;
+
+                if (y > 500) {
+                    botonArriba.classList.add('visible');
+                } else {
+                    botonArriba.classList.remove('visible');
+                }
+
+                if (navLateral) {
+                    if (y > 300 && y < document.documentElement.scrollHeight - window.innerHeight - 300) {
+                        navLateral.classList.add('visible');
+                    } else {
+                        navLateral.classList.remove('visible');
+                    }
+                }
+            };
+
+            /* ---------- EVENTOS ---------- */
+            const onScroll = () => {
+                actualizarProgreso();
+                actualizarBotones();
+                marcarActiva();
+            };
+
+            const onResize = () => {
+                vh = window.innerHeight;
+                actualizarProgreso();
+            };
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onResize, { passive: true });
+
+            botonArriba.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            /* ---------- BOTONES DEL NAV LATERAL ---------- */
+            navLinks.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.getElementById(link.dataset.target);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            /* ---------- DETECCIÓN DE MOVIMIENTO REDUCIDO ---------- */
+            const mqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            mqMotion.addEventListener?.('change', (e) => {
+                reducedMotion = e.matches;
+                if (reducedMotion && rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                    [...elementosRevelar, ...itemsLista].forEach(limpiarEstilo);
+                } else if (!reducedMotion && !rafId) {
+                    rafId = requestAnimationFrame(actualizar);
+                }
+            });
+
+            /* ---------- INICIALIZACIÓN ---------- */
+            if (!reducedMotion) {
+                rafId = requestAnimationFrame(actualizar);
+            } else {
+                [...elementosRevelar, ...itemsLista].forEach(limpiarEstilo);
+            }
+
+            actualizarProgreso();
+            actualizarBotones();
+            marcarActiva();
+        })();
     </script>
 
 </body>
