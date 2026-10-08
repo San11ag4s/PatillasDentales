@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F5EFE4">
+    <title>Pastillas Dentales Portátiles</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --fondo:        #F5EFE4;
+            --papel:        #FDFBF6;
+            --tinta:        #2E1F17;
+            --tinta-suave:  #6B5847;
+            --canela:       #A65A2E;
+            --miel:         #D4A574;
+            --salvia:       #7D9080;
+            --linea:        #E8DFD0;
+            --linea-suave:  #F0E9DC;
+
+            --serif:        "Fraunces", Georgia, serif;
+            --sans:         "Inter", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--fondo);
+            color: var(--tinta);
+            font-family: var(--sans);
+            font-weight: 300;
+            font-size: 15.5px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+            mix-blend-mode: multiply;
+        }
+
+        .progreso {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: var(--canela);
+            opacity: 0.5;
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        .contenedor {
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 0 22px 100px 22px;
+            position: relative;
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding: 22px 0 60px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            position: relative;
+            animation: heroIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+        }
+
+        @keyframes heroIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            font-family: var(--sans);
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--tinta-suave);
+            opacity: 0.75;
+        }
+
+        .hero-centro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .pastilla-svg {
+            width: 170px;
+            height: auto;
+            margin-bottom: 42px;
+            filter: drop-shadow(0 8px 20px rgba(46, 31, 23, 0.06));
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 46px;
+            letter-spacing: -1px;
+            line-height: 1.02;
+            color: var(--tinta);
+            margin: 0 0 24px 0;
+            font-variation-settings: "opsz" 144;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--canela);
+        }
+
+        .hero-lema {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--tinta-suave);
+            letter-spacing: 0.3px;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .hero-pie {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero-pie-texto {
+            font-family: var(--sans);
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--tinta-suave);
+            opacity: 0.6;
+        }
+
+        .scroll-marca {
+            width: 1px;
+            height: 44px;
+            background: linear-gradient(to bottom, var(--canela) 0%, transparent 100%);
+            opacity: 0.6;
+            animation: scrollPulse 2.4s ease-in-out infinite;
+            transform-origin: top;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(0.6); opacity: 0.4; }
+            50%      { transform: scaleY(1);   opacity: 0.75; }
+        }
+
+        .seccion {
+            padding: 56px 0 12px 0;
+            position: relative;
+        }
+
+        .seccion + .seccion {
+            border-top: 1px solid var(--linea);
+        }
+
+        .seccion-cabecera { margin-bottom: 30px; position: relative; }
+
+        .seccion-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--sans);
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--tinta-suave);
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+
+        .seccion-meta .numero {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: var(--canela);
+            opacity: 1;
+            text-transform: none;
+        }
+
+        .seccion h2 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 30px;
+            letter-spacing: -0.6px;
+            line-height: 1.15;
+            color: var(--tinta);
+            margin: 0;
+            font-variation-settings: "opsz" 144;
+        }
+
+        .seccion h2 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--canela);
+        }
+
+        .parrafo {
+            margin: 0 0 18px 0;
+            font-size: 15.5px;
+            line-height: 1.78;
+            color: var(--tinta);
+            font-weight: 300;
+            text-align: left;
+        }
+
+        .parrafo:last-child { margin-bottom: 0; }
+
+        .parrafo-inicial::first-letter {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 58px;
+            line-height: 0.85;
+            float: left;
+            padding: 8px 10px 0 0;
+            color: var(--canela);
+            font-variation-settings: "opsz" 144;
+        }
+
+        .lista-caract {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            counter-reset: caract;
+        }
+
+        .lista-caract li {
+            padding: 22px 0 22px 0;
+            border-bottom: 1px solid var(--linea-suave);
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            font-size: 15.5px;
+            color: var(--tinta);
+        }
+
+        .lista-caract li:last-child {
+            border-bottom: none;
+            padding-bottom: 8px;
+        }
+
+        .lista-caract li::before {
+            counter-increment: caract;
+            content: counter(caract, decimal-leading-zero);
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 500;
+            font-size: 13px;
+            color: var(--canela);
+            opacity: 0.85;
+            flex-shrink: 0;
+            min-width: 24px;
+        }
+
+        .lista-ing { list-style: none; padding: 0; margin: 0; }
+
+        .lista-ing li {
+            padding: 26px 0 26px 28px;
+            border-bottom: 1px solid var(--linea-suave);
+            position: relative;
+        }
+
+        .lista-ing li:last-child { border-bottom: none; }
+
+        .lista-ing li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 34px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--canela);
+            opacity: 0.85;
+            box-shadow: 0 0 0 3px rgba(166, 90, 46, 0.08);
+        }
+
+        .lista-ing h3 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: -0.2px;
+            color: var(--tinta);
+            margin: 0 0 8px 0;
+            font-variation-settings: "opsz" 144;
+        }
+
+        .lista-ing p {
+            font-size: 14.5px;
+            line-height: 1.75;
+            color: var(--tinta-suave);
+            margin: 0;
+            font-weight: 300;
+        }
+
+        .bloque-precaucion {
+            background: rgba(125, 144, 128, 0.045);
+            border-left: 2px solid var(--salvia);
+            padding: 28px 22px 28px 24px;
+            border-radius: 0 4px 4px 0;
+            margin: 0 -6px;
+        }
+
+        .lista-prec { list-style: none; padding: 0; margin: 0; }
+
+        .lista-prec li {
+            padding: 20px 0 20px 0;
+            border-bottom: 1px solid rgba(125, 144, 128, 0.15);
+        }
+
+        .lista-prec li:last-child {
+            border-bottom: none;
+            padding-bottom: 4px;
+        }
+
+        .lista-prec h3 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 17.5px;
+            letter-spacing: -0.1px;
+            color: var(--salvia);
+            margin: 0 0 8px 0;
+            font-variation-settings: "opsz" 144;
+        }
+
+        .lista-prec p {
+            font-size: 14.5px;
+            line-height: 1.75;
+            color: var(--tinta);
+            margin: 0;
+            font-weight: 300;
+        }
+
+        .nota {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--tinta-suave);
+            padding: 18px 0 0 0;
+            margin: 24px 0 0 0;
+            border-top: 1px solid var(--linea-suave);
+        }
+
+        .bloque-precaucion .nota {
+            border-top: 1px solid rgba(125, 144, 128, 0.2);
+        }
+
+        .bloque-precio {
+            padding: 70px 0 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .bloque-precio .seccion-cabecera { text-align: center; }
+
+        .bloque-precio .seccion-meta {
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .precio-ornament {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin: 40px 0 32px 0;
+            opacity: 0.85;
+        }
+
+        .precio-ornament .lin {
+            width: 34px;
+            height: 1px;
+            background: var(--canela);
+            opacity: 0.55;
+        }
+
+        .precio-ornament .punto {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--canela);
+            opacity: 0.9;
+        }
+
+        .precio-cifra {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 6px;
+            margin: 0 0 20px 0;
+            line-height: 1;
+        }
+
+        .precio-moneda {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 24px;
+            color: var(--canela);
+            opacity: 0.75;
+            padding-top: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .precio-numero {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 88px;
+            letter-spacing: -3px;
+            color: var(--tinta);
+            line-height: 0.9;
+            font-variation-settings: "opsz" 144;
+        }
+
+        .precio-detalle {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--tinta-suave);
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .colofon {
+            padding: 60px 0 20px 0;
+            text-align: center;
+            border-top: 1px solid var(--linea);
+            margin-top: 40px;
+        }
+
+        .colofon-ornament {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .colofon-ornament span {
+            display: block;
+            height: 1px;
+            background: var(--canela);
+            opacity: 0.55;
+        }
+
+        .colofon-ornament span:nth-child(1) { width: 14px; }
+        .colofon-ornament span:nth-child(2) {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--canela);
+            opacity: 0.9;
+        }
+        .colofon-ornament span:nth-child(3) { width: 14px; }
+
+        .colofon-firma {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--tinta);
+            letter-spacing: 0.3px;
+            margin: 0 0 8px 0;
+        }
+
+        .colofon-info {
+            font-family: var(--sans);
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--tinta-suave);
+            opacity: 0.6;
+            margin: 0;
+        }
+
+        .arriba {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--papel);
+            border: 1px solid var(--linea);
+            color: var(--canela);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 2px 12px rgba(46, 31, 23, 0.06);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            z-index: 900;
+        }
+
+        .arriba.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .arriba svg { width: 14px; height: 14px; }
+
+        .revelar,
+        .lista-ing li,
+        .lista-caract li,
+        .lista-prec li {
+            will-change: opacity, transform, filter;
+            transition: filter 0.2s linear, opacity 0.2s linear, transform 0.2s linear;
+        }
+
+        @media (min-width: 700px) {
+            .contenedor {
+                max-width: 520px;
+                padding: 0 30px 120px 30px;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .hero h1 { font-size: 58px; }
+            .hero-lema { font-size: 18px; }
+            .pastilla-svg { width: 200px; }
+            .seccion h2 { font-size: 36px; }
+            .precio-numero { font-size: 110px; }
+            .parrafo, .lista-caract li { font-size: 16.5px; }
+            .lista-ing h3 { font-size: 22px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            .hero {
+                animation: none;
+            }
+
+            .revelar,
+            .lista-ing li,
+            .lista-caract li,
+            .lista-prec li {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+                transition: none !important;
+            }
+
+            .scroll-marca { animation: none; }
+            .arriba, .progreso { transition: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progreso" id="progreso" aria-hidden="true"></div>
+
+    <div class="contenedor">
+
+        <section class="hero" aria-label="Portada">
+            <div class="hero-top">
+                <span>Ficha de producto</span>
+            </div>
+
+            <div class="hero-centro">
+
+                <svg class="pastilla-svg" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <ellipse cx="100" cy="158" rx="60" ry="6" fill="#2E1F17" opacity="0.08"/>
+                    <path d="M35 70 L35 120 A65 20 0 0 0 165 120 L165 70 Z"
+                          fill="#EAE0D0" stroke="#2E1F17" stroke-width="0.9" stroke-linejoin="round"/>
+                    <ellipse cx="100" cy="70" rx="65" ry="20"
+                             fill="#FBF7EF" stroke="#2E1F17" stroke-width="0.9"/>
+                    <circle cx="75" cy="65" r="2.4" fill="#A65A2E"/>
+                    <circle cx="125" cy="72" r="2" fill="#A65A2E"/>
+                    <circle cx="100" cy="78" r="2.2" fill="#A65A2E"/>
+                    <circle cx="85" cy="68" r="1.6" fill="#A65A2E"/>
+                    <circle cx="115" cy="65" r="2" fill="#A65A2E"/>
+                    <circle cx="100" cy="62" r="1.7" fill="#A65A2E"/>
+                    <circle cx="65" cy="72" r="1.8" fill="#A65A2E"/>
+                    <circle cx="135" cy="75" r="1.7" fill="#A65A2E"/>
+                </svg>
+
+                <h1>Pastillas dentales<br><em>portátiles</em></h1>
+
+                <p class="hero-lema">Una pastilla. Cualquier lugar.</p>
+            </div>
+
+            <div class="hero-pie">
+                <span class="hero-pie-texto">Desplázate</span>
+                <span class="scroll-marca" aria-hidden="true"></span>
+            </div>
+        </section>
+
+        <section class="seccion revelar" aria-labelledby="t-descripcion">
+            <header class="seccion-cabecera">
+                <div class="seccion-meta">
+                    <span class="numero">01</span>
+                    <span>Descripción</span>
+                </div>
+                <h2 id="t-descripcion">Una solución simple<br>para un momento <em>incómodo</em>.</h2>
+            </header>
+
+            <p class="parrafo parrafo-inicial">
+                Producto pensado para quienes están fuera de casa y no cuentan con cepillo,
+                pasta dental ni un lugar donde lavarse la boca. La pastilla se coloca en la
+                boca y se disuelve con la saliva; luego se frota suavemente contra los dientes
+                y las encías para limpiar y refrescar.
+            </p>
+            <p class="parrafo">
+                Es de forma cilíndrica pequeña, de color blanco con puntos marrones naturales
+                provenientes de la canela. Su presentación es seca y portátil, ideal para
+                llevar en el bolsillo, mochila o cartera.
+            </p>
+        </section>
+
+        <section class="seccion revelar" aria-labelledby="t-caract">
+            <header class="seccion-cabecera">
+                <div class="seccion-meta">
+                    <span class="numero">02</span>
+                    <span>Características</span>
+                </div>
+                <h2 id="t-caract">Lo esencial,<br>en <em>cinco puntos</em>.</h2>
+            </header>
+
+            <ul class="lista-caract">
+                <li>Forma cilíndrica pequeña y compacta</li>
+                <li>Blanca con puntos marrones naturales de canela</li>
+                <li>Se disuelve con la saliva y se frota en la boca</li>
+                <li>No requiere agua, cepillo ni pasta dental</li>
+                <li>Presentación portátil para llevar fuera de casa</li>
+            </ul>
+        </section>
+
+        <section class="seccion revelar" aria-labelledby="t-ing">
+            <header class="seccion-cabecera">
+                <div class="seccion-meta">
+                    <span class="numero">03</span>
+                    <span>Ingredientes y beneficios</span>
+                </div>
+                <h2 id="t-ing">Siete elementos<br>con una <em>función clara</em>.</h2>
+            </header>
+
+            <ul class="lista-ing">
+                <li>
+                    <h3>Canela en polvo</h3>
+                    <p>Posee propiedades antibacterianas y antiinflamatorias que ayudan a
+                    reducir los microorganismos causantes del mal aliento y de la placa
+                    dental. También aporta un aroma cálido y agradable.</p>
+                </li>
+                <li>
+                    <h3>Esencia de menta</h3>
+                    <p>Aporta una sensación de frescura inmediata y ayuda a refrescar el
+                    aliento. Su aroma tiene un efecto ligero sobre la percepción de
+                    limpieza y bienestar en la boca.</p>
+                </li>
+                <li>
+                    <h3>Bicarbonato de sodio</h3>
+                    <p>Es un agente limpiador suave que ayuda a neutralizar los ácidos de la
+                    boca y a reducir la formación de placa. También contribuye a mantener
+                    un pH más equilibrado en la cavidad bucal.</p>
+                </li>
+                <li>
+                    <h3>Sal fina</h3>
+                    <p>Actúa como antiséptico natural y ayuda a reducir la inflamación de las
+                    encías. Favorece la limpieza mecánica al frotar y aporta minerales
+                    beneficiosos para la salud bucal.</p>
+                </li>
+                <li>
+                    <h3>Stevia</h3>
+                    <p>Endulzante natural de origen vegetal que no aporta calorías ni favorece
+                    la caries, a diferencia del azúcar. Mejora el sabor del producto sin
+                    afectar la salud dental.</p>
+                </li>
+                <li>
+                    <h3>Maicena</h3>
+                    <p>Cumple la función de dar estructura y consistencia a la pastilla.
+                    No aporta beneficios directos a la salud, pero es necesaria para que el
+                    producto mantenga su forma sólida.</p>
+                </li>
+                <li>
+                    <h3>Gelatina sin sabor</h3>
+                    <p>Actúa como aglutinante natural que ayuda a unir los ingredientes y a
+                    mantener la forma compacta de la pastilla. Además, aporta una textura
+                    adecuada para que se disuelva de forma progresiva con la saliva.</p>
+                </li>
+            </ul>
+
+            <p class="nota">
+                La esencia de menta aporta únicamente el sabor fresco y no influye en el color.
+                La maicena y la gelatina cumplen funciones estructurales dentro de la pastilla.
+            </p>
+        </section>
+
+        <section class="seccion revelar" aria-labelledby="t-prec">
+            <header class="seccion-cabecera">
+                <div class="seccion-meta">
+                    <span class="numero">04</span>
+                    <span>Precauciones y modo de uso</span>
+                </div>
+                <h2 id="t-prec">Antes de usarla,<br>ten en cuenta <em>esto</em>.</h2>
+            </header>
+
+            <div class="bloque-precaucion">
+                <ul class="lista-prec">
+                    <li>
+                        <h3>Uso moderado</h3>
+                        <p>Se recomienda consumir como máximo una pastilla por comida y no
+                        más de tres al día. El uso excesivo podría irritar las encías o
+                        alterar el equilibrio natural de la boca.</p>
+                    </li>
+                    <li>
+                        <h3>No reemplaza el cepillado</h3>
+                        <p>Es un complemento para momentos fuera de casa. No sustituye el
+                        cepillado diario con pasta dental, que sigue siendo necesario para
+                        una higiene bucal completa.</p>
+                    </li>
+                    <li>
+                        <h3>Modo de uso</h3>
+                        <p>Colocar una pastilla en la boca, dejar que se disuelva con la
+                        saliva y frotarla suavemente con la lengua o los dientes durante uno
+                        o dos minutos. No es necesario enjuagar con agua.</p>
+                    </li>
+                    <li>
+                        <h3>Alergias e intolerancias</h3>
+                        <p>No apto para personas alérgicas a la canela, a la menta o a
+                        cualquiera de los ingredientes de la lista. En caso de duda,
+                        consultar con un especialista antes de consumir.</p>
+                    </li>
+                    <li>
+                        <h3>Uso en niños</h3>
+                        <p>No recomendado para menores de seis años, ya que podrían
+                        atragantarse con la pastilla o no disolverla correctamente.</p>
+                    </li>
+                    <li>
+                        <h3>Lesiones bucales</h3>
+                        <p>Evitar su consumo si se tienen heridas abiertas, aftas o
+                        irritaciones en la boca, ya que la sal y el bicarbonato podrían
+                        generar molestias.</p>
+                    </li>
+                    <li>
+                        <h3>Sensibilidad dental</h3>
+                        <p>Si se presenta sensibilidad, ardor o molestia al usarla,
+                        suspender el consumo y enjuagar la boca con abundante agua.</p>
+                    </li>
+                    <li>
+                        <h3>Conservación</h3>
+                        <p>Mantener el empaque cerrado en un lugar fresco y seco, lejos de
+                        la humedad y del calor directo, para que las pastillas conserven su
+                        forma y sus propiedades.</p>
+                    </li>
+                </ul>
+
+                <p class="nota">
+                    Este producto es un complemento de higiene y no un tratamiento médico.
+                    Ante cualquier molestia persistente, se recomienda acudir a un odontólogo.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion revelar bloque-precio" aria-labelledby="t-precio">
+            <header class="seccion-cabecera">
+                <div class="seccion-meta">
+                    <span class="numero">05</span>
+                    <span>Precio</span>
+                </div>
+                <h2 id="t-precio">Un empaque.<br>Treinta <em>pastillas</em>.</h2>
+            </header>
+
+            <div class="precio-ornament" aria-hidden="true">
+                <span class="lin"></span>
+                <span class="punto"></span>
+                <span class="lin"></span>
+            </div>
+
+            <p class="precio-cifra">
+                <span class="precio-moneda">S/</span>
+                <span class="precio-numero">6.00</span>
+            </p>
+            <p class="precio-detalle">Empaque de 30 pastillas</p>
+        </section>
+
+        <footer class="colofon revelar">
+            <div class="colofon-ornament" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p class="colofon-firma">Santiago Rodriguez</p>
+            <p class="colofon-info">Ficha de producto &middot; 2026</p>
+        </footer>
+
+    </div>
+
+    <button class="arriba" id="arriba" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"/>
+            <path d="M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <script>
+        const elementosRevelar = Array.from(document.querySelectorAll('.revelar'));
+        const itemsLista = Array.from(document.querySelectorAll('.lista-ing li, .lista-caract li, .lista-prec li'));
+
+        const indiceItem = new Map();
+        itemsLista.forEach((item) => {
+            const padre = item.parentElement;
+            const hermanos = Array.from(padre.children);
+            indiceItem.set(item, hermanos.indexOf(item));
+        });
+
+        const BLUR_MAX = 4;              // antes 6, aún más suave
+        const BLUR_MAX_ITEM = 3;         // antes 5
+        const OPACIDAD_MIN = 0.75;       // antes 0.65, entran casi visibles
+        const DESPLAZAMIENTO_MAX = 10;   // antes 14
+        const DESPLAZAMIENTO_ITEM = 8;   // antes 10
+        const OFFSET_ITEM = 10;          // antes 12
+        const RANGO_FOCO = 0.08;         // antes 0.15, enfoca casi al instante
+        const PUNTO_ENFOQUE = 0.75;      // 0.5 = mitad de pantalla · 0.75 = más abajo
+
+        let vh = window.innerHeight;
+
+        function calcularFactor(rect, offsetExtra) {
+            const puntoFoco = vh * PUNTO_ENFOQUE;      // antes: vh / 2
+            const distancia = rect.top - puntoFoco + offsetExtra;
+
+            if (distancia <= 0) return 1;
+
+            const rango = vh * RANGO_FOCO;
+            const factor = 1 - Math.min(distancia / rango, 1);
+
+            return factor * factor * (3 - 2 * factor);
+        }
+
+        function actualizar() {
+            vh = window.innerHeight;
+
+            elementosRevelar.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.bottom < 0) {
+                    el.style.filter = 'none';
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                    return;
+                }
+
+                const factor = calcularFactor(rect, 0);
+                const blur = (1 - factor) * BLUR_MAX;
+                const opacidad = OPACIDAD_MIN + factor * (1 - OPACIDAD_MIN);
+                const desplazamiento = (1 - factor) * DESPLAZAMIENTO_MAX;
+
+                el.style.filter = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : 'none';
+                el.style.opacity = opacidad.toFixed(3);
+                el.style.transform = `translateY(${desplazamiento.toFixed(2)}px)`;
+            });
+
+            itemsLista.forEach((item) => {
+                const rect = item.getBoundingClientRect();
+
+                if (rect.bottom < 0) {
+                    item.style.filter = 'none';
+                    item.style.opacity = '1';
+                    item.style.transform = 'none';
+                    return;
+                }
+
+                const idx = indiceItem.get(item) || 0;
+                const offsetExtra = idx * OFFSET_ITEM;
+
+                const factor = calcularFactor(rect, offsetExtra);
+                const blur = (1 - factor) * BLUR_MAX_ITEM;
+                const opacidad = OPACIDAD_MIN + factor * (1 - OPACIDAD_MIN);
+                const desplazamiento = (1 - factor) * DESPLAZAMIENTO_ITEM;
+
+                item.style.filter = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : 'none';
+                item.style.opacity = opacidad.toFixed(3);
+                item.style.transform = `translateY(${desplazamiento.toFixed(2)}px)`;
+            });
+
+            requestAnimationFrame(actualizar);
+        }
+
+        requestAnimationFrame(actualizar);
+
+        const progreso = document.getElementById('progreso');
+        const actualizarProgreso = () => {
+            const altura = document.documentElement.scrollHeight - window.innerHeight;
+            const avance = altura > 0 ? (window.scrollY / altura) * 100 : 0;
+            progreso.style.width = avance + '%';
+        };
+        window.addEventListener('scroll', actualizarProgreso, { passive: true });
+        window.addEventListener('resize', actualizarProgreso);
+
+        const botonArriba = document.getElementById('arriba');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                botonArriba.classList.add('visible');
+            } else {
+                botonArriba.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        botonArriba.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
