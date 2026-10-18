@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F4F7F8">
+<meta name="description" content="Ficha de producto: pastillas dentales portátiles. Una pastilla, cualquier lugar.">
+<title>Pastillas Dentales Portátiles · Ficha de producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Nunito:wght@400..700&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F7F8;--card:#fff;--fg:#14283A;--mut:#4B5E70;--ac:#0F766E;--tint:#E3F1EF;--navy:#0F2A3F;--ln:rgba(20,40,58,.13);--r:22px;--serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"Nunito","Segoe UI",Arial,sans-serif;--hand:"Caveat","Segoe Print",cursive;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 74px);overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:rgba(244,247,248,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:10px 16px;z-index:100;text-decoration:none}
+.skip-link:focus{left:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.ic{width:24px;height:24px}
+.ic *{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* cabecera */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(244,247,248,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:60px}
+
+.chips{display:flex;gap:6px;flex:1;overflow-x:auto;scrollbar-width:none;margin-right:-20px;padding:8px 20px 8px 0}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;display:flex;align-items:center;height:44px;min-width:44px;padding:0 10px;border-radius:99px;border:1px solid var(--ln);background:var(--card);color:var(--navy);font:500 14px var(--sans);text-decoration:none;white-space:nowrap;transition:background .9s ease,color .9s ease,border-color .9s ease,padding .9s cubic-bezier(.45,.05,.25,1)}
+.chips a .ic{flex:none;width:22px;height:22px}
+.chips a span{max-width:0;margin-left:0;opacity:0;overflow:hidden;transition:max-width .9s cubic-bezier(.45,.05,.25,1),margin .9s cubic-bezier(.45,.05,.25,1),opacity .6s ease}
+.chips a.activo{background:var(--navy);border-color:var(--navy);color:#fff;padding-right:16px}
+.chips a.activo span{max-width:132px;margin-left:8px;opacity:1;transition-delay:0s,0s,.3s}
+.progreso{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--ac);transform:scaleX(0);transform-origin:left}
+
+/* portada */
+.hero{padding:36px 0 52px;background:var(--card)}
+.hero .wrap{display:grid;gap:28px}
+.chip{display:inline-block;padding:5px 12px;border-radius:8px;background:var(--tint);color:var(--ac);font:600 14px var(--sans)}
+.hero h1{margin:14px 0 0;font:700 clamp(36px,10.4vw,68px)/1.06 var(--serif);letter-spacing:-.015em;text-wrap:balance}
+.hero-lema{margin:12px 0 0;font:600 clamp(28px,7.6vw,38px)/1.15 var(--hand);color:var(--ac)}
+.ilus{margin:0;display:grid;place-items:center;height:230px;border-radius:var(--r);background:var(--tint)}
+.ilus svg{width:min(100%,300px);height:100%}
+
+
+
+.datos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.datos div{border:1px solid var(--ln);border-radius:var(--r);padding:16px 18px;background:var(--bg);text-align:center}
+.datos strong{display:block;font:700 clamp(26px,7.6vw,36px)/1.1 var(--serif)}
+.datos span{display:block;margin-top:4px;font-size:15px;line-height:1.4;color:var(--mut)}
+@media(min-width:800px){.hero .wrap{grid-template-columns:1.15fr .85fr;align-items:center;gap:40px}.datos{grid-column:1/-1;grid-template-columns:repeat(4,1fr)}.ilus{height:300px}}
+
+/* secciones */
+.seccion{padding:60px 0 10px;border-top:1px solid var(--ln)}
+.hero+.wrap .seccion:first-child{border-top:0}
+.cab{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:18px 14px;margin-bottom:26px}
+.tit{display:contents}
+.ico{grid-area:1/1;width:52px;height:52px;padding:13px;border-radius:14px;background:var(--tint);color:var(--ac);transition:background .8s ease,color .8s ease}
+.seccion.activa .ico{background:var(--navy);color:#fff}
+.meta{grid-area:1/2;display:flex;align-items:center;gap:10px;font:600 15px var(--sans);color:var(--ac)}
+.numero{padding:2px 8px;border:1.5px solid currentColor;border-radius:6px;font-size:14px}
+h2{grid-area:2/1/3/3;margin:0;font:600 clamp(27px,7.2vw,40px)/1.15 var(--serif);letter-spacing:-.01em;text-wrap:balance}
+.cuerpo{min-width:0}
+.parrafo{margin:0 0 18px;max-width:64ch;text-wrap:pretty}
+.parrafo-inicial{font:400 clamp(19px,5vw,22px)/1.6 var(--serif)}
+@media(min-width:900px){.seccion:not(.bloque-precio){display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}.seccion:not(.bloque-precio) .cab{position:sticky;top:104px;margin-bottom:0}}
+
+/* listas */
+.lista-caract,.lista-ing,.lista-prec{list-style:none;margin:0;padding:0}
+.lista-caract{background:var(--card);border:1px solid var(--ln);border-radius:var(--r);padding:2px 20px}
+.lista-caract li{display:flex;align-items:center;gap:14px;padding:17px 0;border-top:1px solid var(--ln);font-weight:500}
+.lista-caract li:first-child{border-top:0}
+.lista-caract li::before{content:"";flex:none;width:28px;height:28px;border-radius:50%;background:var(--tint) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F766E' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M6.5 12.5l3.5 3.5 7.5-8'/></svg>") center/18px no-repeat}
+.lista-ing{counter-reset:i;display:grid;gap:12px}
+.lista-ing li{counter-increment:i;display:grid;grid-template-columns:34px 1fr;gap:4px 16px;background:var(--card);border:1px solid var(--ln);border-radius:var(--r);padding:20px}
+.lista-ing li::before{content:counter(i);grid-row:span 2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--tint);color:var(--ac);font:600 15px var(--sans)}
+.lista-ing h3{margin:0;align-self:center;font:600 clamp(20px,5.4vw,23px)/1.2 var(--serif)}
+.lista-ing p{margin:0;color:var(--mut);font-size:16px}
+.nota{margin:22px 0 0;padding:14px 16px;border-left:3px solid var(--ac);border-radius:0 10px 10px 0;background:var(--tint);font-size:15.5px;line-height:1.6;max-width:64ch}
+
+/* precauciones */
+.bloque-precaucion{background:var(--navy);color:#fff;border-radius:var(--r);padding:10px 22px 24px}
+.lista-prec li{padding:20px 0;border-top:1px solid rgba(255,255,255,.16)}
+.lista-prec li:first-child{border-top:0}
+.lista-prec h3{margin:0 0 6px;font:600 20px/1.25 var(--serif)}
+.lista-prec p{margin:0;font-size:16px;color:rgba(255,255,255,.84)}
+.bloque-precaucion .nota{margin-top:6px;background:rgba(255,255,255,.08);border-color:#5EEAD4;color:#fff}
+
+/* precio */
+.bloque-precio{padding-top:60px}
+.caja{background:var(--card);border:1px solid var(--ln);border-radius:20px;text-align:center;padding:32px 20px 36px}
+.bloque-precio .cab{grid-template-columns:1fr;justify-items:center;gap:14px;margin-bottom:10px}
+.bloque-precio .ico,.bloque-precio .meta,.bloque-precio h2{grid-area:auto}
+.precio-ornament{display:none}
+.precio-cifra{display:flex;justify-content:center;align-items:baseline;gap:8px;margin:18px 0 0;line-height:1}
+.precio-moneda{font:600 clamp(24px,6.5vw,36px) var(--serif);color:var(--ac)}
+.precio-numero{font:700 clamp(56px,16vw,96px)/1 var(--serif);letter-spacing:-.02em;font-variant-numeric:lining-nums tabular-nums}
+.precio-detalle{margin:14px 0 0;font-weight:500}
+.precio-nota{margin:6px 0 0;font:600 25px/1.2 var(--hand);color:var(--ac)}
+
+/* pie */
+.colofon{margin-top:64px;border-top:1px solid var(--ln);text-align:center;padding:36px 20px calc(48px + env(safe-area-inset-bottom,0px))}
+.colofon-ornament,.colofon-ornament span{display:none}
+.colofon-firma{margin:0 0 4px;font:600 22px/1.2 var(--serif)}
+.colofon-info{margin:0;color:var(--mut);font-size:15px}
+.arriba{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:48px;height:48px;display:grid;place-items:center;border:0;border-radius:14px;background:var(--navy);color:#fff;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s;z-index:70}
+.arriba.visible{opacity:1;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.top,.arriba,.ilus{display:none}body{background:#fff}.bloque-precaucion{background:#fff;color:#000;border:1px solid #999}.lista-prec p,.bloque-precaucion .nota{color:#000}}
+</style>
+</head>
+<body>
+
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap">
+    
+    <nav class="chips" id="chips" aria-label="Navegación de secciones">
+      <a href="#sec-descripcion" data-target="sec-descripcion"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7.5" width="19" height="9" rx="4.5"/><path d="M12 7.5v9"/></svg><span>Descripción</span></a>
+      <a href="#sec-caract" data-target="sec-caract"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h11M10 12h11M10 18h11"/><path d="M3 6l1.2 1.2L6.5 4.8M3 12l1.2 1.2L6.5 10.8M3 18l1.2 1.2L6.5 16.8"/></svg><span>Características</span></a>
+      <a href="#sec-ing" data-target="sec-ing"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 4-13 14-14 0 9-5 14-13 14"/><path d="M5 19c2-5 5-8 9-10"/></svg><span>Ingredientes</span></a>
+      <a href="#sec-prec" data-target="sec-prec"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span>Precauciones</span></a>
+      <a href="#sec-precio" data-target="sec-precio"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.4"/></svg><span>Precio</span></a>
+    </nav>
+  </div>
+  <div class="progreso" id="progreso" aria-hidden="true"></div>
+</header>
+
+<main id="contenido">
+
+<section class="hero" aria-label="Portada">
+  <div class="wrap">
+    <div>
+      <span class="chip">Ficha de producto</span>
+      <h1>Pastillas dentales portátiles</h1>
+      <p class="hero-lema">Una pastilla. Cualquier lugar.</p>
+    </div>
+    <figure class="ilus" aria-hidden="true">
+      <svg viewBox="0 0 260 200">
+        
+        <path d="M78 92v30c0 14 23 24 52 24s52-10 52-24V92" fill="#E6ECEF" stroke="#0F2A3F" stroke-width="2" stroke-linejoin="round"/>
+        <ellipse cx="130" cy="92" rx="52" ry="22" fill="#fff" stroke="#0F2A3F" stroke-width="2"/>
+        <g fill="#8A5A3B"><circle cx="108" cy="90" r="2.6"/><circle cx="124" cy="98" r="2.3"/><circle cx="141" cy="88" r="2.6"/><circle cx="154" cy="95" r="2"/><circle cx="116" cy="82" r="2"/><circle cx="132" cy="84" r="2.2"/><circle cx="97" cy="96" r="1.9"/><circle cx="147" cy="100" r="1.9"/></g>
+      </svg>
+    </figure>
+    <div class="datos">
+      <div><strong>30</strong><span>pastillas por empaque</span></div>
+      <div><strong>7</strong><span>ingredientes</span></div>
+      <div><strong>1–2 min</strong><span>de uso por pastilla</span></div>
+      <div><strong>3</strong><span>como máximo al día</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="seccion" id="sec-descripcion" aria-labelledby="t-descripcion">
+  <header class="cab">
+    <div class="meta"><span class="numero">01</span><span>Descripción</span></div>
+    <div class="tit">
+      <h2 id="t-descripcion">Higiene bucal cuando no hay dónde cepillarse</h2>
+      <svg class="ic ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7.5" width="19" height="9" rx="4.5"/><path d="M12 7.5v9"/></svg>
+    </div>
+  </header>
+  <div class="cuerpo">
+    <p class="parrafo parrafo-inicial">Pensada para quienes están fuera de casa y no tienen a mano un cepillo, pasta dental ni un lugar donde enjuagarse. La pastilla se disuelve en la boca con la saliva y después se frota con suavidad sobre los dientes y las encías para limpiar y refrescar.</p>
+    <p class="parrafo">Tiene forma cilíndrica, es pequeña y de color blanco, con puntos marrones que provienen de la canela. Se presenta en seco, por lo que cabe fácilmente en un bolsillo, una mochila o una cartera.</p>
+  </div>
+</section>
+
+<section class="seccion" id="sec-caract" aria-labelledby="t-caract">
+  <header class="cab">
+    <div class="meta"><span class="numero">02</span><span>Características</span></div>
+    <div class="tit">
+      <h2 id="t-caract">Características del producto</h2>
+      <svg class="ic ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h11M10 12h11M10 18h11"/><path d="M3 6l1.2 1.2L6.5 4.8M3 12l1.2 1.2L6.5 10.8M3 18l1.2 1.2L6.5 16.8"/></svg>
+    </div>
+  </header>
+  <div class="cuerpo">
+    <ul class="lista-caract">
+      <li>Pequeña, cilíndrica y compacta</li>
+      <li>Blanca, con puntos marrones de canela natural</li>
+      <li>Se disuelve con la saliva y se frota en la boca</li>
+      <li>No necesita agua, cepillo ni pasta dental</li>
+      <li>Fácil de llevar fuera de casa</li>
+    </ul>
+  </div>
+</section>
+
+<section class="seccion" id="sec-ing" aria-labelledby="t-ing">
+  <header class="cab">
+    <div class="meta"><span class="numero">03</span><span>Ingredientes y beneficios</span></div>
+    <div class="tit">
+      <h2 id="t-ing">Qué contiene y para qué sirve cada ingrediente</h2>
+      <svg class="ic ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 4-13 14-14 0 9-5 14-13 14"/><path d="M5 19c2-5 5-8 9-10"/></svg>
+    </div>
+  </header>
+  <div class="cuerpo">
+    <ul class="lista-ing">
+      <li><h3>Canela en polvo</h3><p>Tiene propiedades antibacterianas y antiinflamatorias, que ayudan a reducir los microorganismos asociados al mal aliento y a la placa dental. Además, le da un aroma cálido.</p></li>
+      <li><h3>Esencia de menta</h3><p>Da una sensación inmediata de frescura y ayuda a refrescar el aliento. Su aroma también transmite una impresión de limpieza en la boca.</p></li>
+      <li><h3>Bicarbonato de sodio</h3><p>Limpia de forma suave, neutraliza parte de los ácidos de la boca y ayuda a reducir la formación de placa. También contribuye a mantener un pH más equilibrado.</p></li>
+      <li><h3>Sal fina</h3><p>Funciona como antiséptico natural y ayuda a calmar la inflamación de las encías. Al frotarla favorece la limpieza mecánica y aporta minerales.</p></li>
+      <li><h3>Stevia</h3><p>Es un endulzante de origen vegetal, sin calorías, que a diferencia del azúcar no favorece la aparición de caries. Mejora el sabor sin perjudicar la salud dental.</p></li>
+      <li><h3>Maicena</h3><p>Da estructura y consistencia a la pastilla. No aporta beneficios directos para la salud; su función es que el producto conserve su forma sólida.</p></li>
+      <li><h3>Gelatina sin sabor</h3><p>Es el aglutinante que une los ingredientes y mantiene compacta la pastilla. También hace que se disuelva de forma gradual con la saliva.</p></li>
+    </ul>
+    <p class="nota">La esencia de menta solo aporta sabor y frescura; no influye en el color. La maicena y la gelatina cumplen una función estructural.</p>
+  </div>
+</section>
+
+<section class="seccion" id="sec-prec" aria-labelledby="t-prec">
+  <header class="cab">
+    <div class="meta"><span class="numero">04</span><span>Precauciones y modo de uso</span></div>
+    <div class="tit">
+      <h2 id="t-prec">Modo de uso y precauciones</h2>
+      <svg class="ic ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+    </div>
+  </header>
+  <div class="cuerpo">
+    <div class="bloque-precaucion">
+      <ul class="lista-prec">
+        <li><h3>Uso moderado</h3><p>Como máximo, una pastilla por comida y no más de tres al día. El uso excesivo puede irritar las encías o alterar el equilibrio natural de la boca.</p></li>
+        <li><h3>No reemplaza el cepillado</h3><p>Es un complemento para cuando estás fuera de casa. No sustituye el cepillado diario con pasta dental, necesario para una higiene bucal completa.</p></li>
+        <li><h3>Modo de uso</h3><p>Coloca una pastilla en la boca y deja que se disuelva con la saliva. Frótala suavemente con la lengua o los dientes durante uno o dos minutos. No hace falta enjuagarse con agua.</p></li>
+        <li><h3>Alergias e intolerancias</h3><p>No es apta para personas alérgicas a la canela, a la menta o a cualquiera de los ingredientes. Si tienes dudas, consulta con un especialista antes de usarla.</p></li>
+        <li><h3>Uso en niños</h3><p>No se recomienda para menores de seis años, porque podrían atragantarse o no disolverla bien.</p></li>
+        <li><h3>Lesiones bucales</h3><p>Evita usarla si tienes heridas abiertas, aftas o irritaciones en la boca: la sal y el bicarbonato pueden causar molestias.</p></li>
+        <li><h3>Sensibilidad dental</h3><p>Si notas sensibilidad, ardor o molestias, deja de usarla y enjuágate la boca con abundante agua.</p></li>
+        <li><h3>Conservación</h3><p>Guarda el empaque cerrado en un lugar fresco y seco, lejos de la humedad y del calor directo, para que las pastillas mantengan su forma y sus propiedades.</p></li>
+      </ul>
+      <p class="nota">Este producto es un complemento de higiene, no un tratamiento médico. Si las molestias persisten, consulta con un odontólogo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion bloque-precio" id="sec-precio" aria-labelledby="t-precio">
+  <div class="caja">
+    <header class="cab">
+      <div class="meta"><span class="numero">05</span><span>Precio</span></div>
+      <div class="tit">
+        <h2 id="t-precio">Presentación y precio</h2>
+        <svg class="ic ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.4"/></svg>
+      </div>
+    </header>
+    <div class="precio-ornament" aria-hidden="true"><span class="lin"></span><span class="punto"></span><span class="lin"></span></div>
+    <p class="precio-cifra"><span class="precio-moneda">S/</span><span class="precio-numero">6.00</span></p>
+    <p class="precio-detalle">Empaque de 30 pastillas</p>
+    <p class="precio-nota">Equivale a S/ 0.20 por pastilla.</p>
+  </div>
+</section>
+
+</div>
+
+<footer class="colofon">
+  <div class="colofon-ornament" aria-hidden="true"><span></span><span></span><span></span></div>
+  <p class="colofon-firma">Santiago Rodriguez</p>
+  <p class="colofon-info">Ficha de producto &middot; 2026</p>
+</footer>
+
+</main>
+
+<button class="arriba" id="arriba" aria-label="Volver arriba"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+
+<script>
+(()=>{"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const pg=$("#progreso"),chips=$("#chips"),up=$("#arriba"),links=$$("#chips a"),secs=$$(".seccion");
+let t=false,cur=null,lock=null,lt=0;
+const upd=()=>{t=false;
+  const y=scrollY,h=document.documentElement.scrollHeight-innerHeight,c=innerHeight*.45;
+  pg.style.transform="scaleX("+(h>0?y/h:0)+")";
+  up.classList.toggle("visible",y>700);
+  secs.forEach(s=>{const r=s.getBoundingClientRect();s.classList.toggle("activa",r.top<=c&&r.bottom>=c)});
+  let now=null;
+  links.forEach(l=>{const r=document.getElementById(l.dataset.target).getBoundingClientRect(),a=lock?l===lock:(y>=h-8?l===links[links.length-1]:r.top<=c&&r.bottom>=c);
+    l.classList.toggle("activo",a);a?l.setAttribute("aria-current","true"):l.removeAttribute("aria-current");if(a)now=l});
+  if(now&&now!==cur){cur=now;chips.scrollTo({left:now.offsetLeft-(chips.clientWidth-150)/2,behavior:"smooth"})}
+};
+const req=()=>{if(!t){t=true;requestAnimationFrame(upd)}};
+addEventListener("scroll",req,{passive:true});addEventListener("resize",req,{passive:true});
+up.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+const free=()=>{lock=null;req()};
+links.forEach(l=>l.addEventListener("click",()=>{lock=l;clearTimeout(lt);lt=setTimeout(free,1600);upd()}));
+addEventListener("scrollend",()=>{if(lock){clearTimeout(lt);lt=setTimeout(free,150)}});
+upd();
+})();
+</script>
+</body>
+</html>
